@@ -50,7 +50,7 @@ module Roleable::Subject
   def remove_role(role_name, resource = nil)
     applied_roles = ::AppliedRole.with_subject(self).with_resource(resource).with_role_name(role_name)
 
-    deleted_count = applied_roles.delete_all
+    deleted_count = applied_roles.destroy_all
 
     deleted_count > 0
   end
