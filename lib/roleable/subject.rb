@@ -49,10 +49,8 @@ module Roleable::Subject
   #
   def remove_role(role_name, resource = nil)
     applied_roles = ::AppliedRole.with_subject(self).with_resource(resource).with_role_name(role_name)
-
-    deleted_count = applied_roles.destroy_all
-
-    deleted_count > 0
+    destroyed_count = applied_roles.destroy_all
+    destroyed_count.present?
   end
 
   # Return a list of resources of the given class, for which the subject has the given role.
